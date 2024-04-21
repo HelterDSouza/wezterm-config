@@ -38,8 +38,24 @@ end
 ---   WezTerm's fs utility `read_dir` (used in this function) works by running on a spawned child process.
 ---   This throws a coroutine error if the function is invoked in outside of `wezterm.lua` in the -
 ---   initial load of the Terminal config.
+
 function BackDrops:set_files()
-   self.files = wezterm.read_dir(wezterm.config_dir .. PATH_SEP .. 'backdrops')
+   local path = wezterm.config_dir .. PATH_SEP .. 'backdrops'
+
+   local files = wezterm.read_dir(path)
+
+   local function remove_git_items(tabela)
+      for i = #tabela, 1, -1 do
+         if string.find(tabela[i], 'README.md') or string.find(tabela[i], '%.git') then
+            table.remove(tabela, i)
+         end
+      end
+   end
+
+   remove_git_items(files)
+
+   self.files = files
+
    wezterm.GLOBAL.background = self.files[1]
    return self
 end

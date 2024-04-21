@@ -1,0 +1,3 @@
+[submodule "backdrops"]
+	path = backdrops
+	url = git@github.com:HelterDSouza/wezterm-backdrop.git
