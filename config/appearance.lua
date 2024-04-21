@@ -5,6 +5,7 @@ local colors = require('colors.custom')
 return {
    animation_fps = 60,
    max_fps = 60,
+   audible_bell = 'Disabled',
    front_end = 'WebGpu',
    webgpu_power_preference = 'HighPerformance',
    webgpu_preferred_adapter = gpu_adapters:pick_best(),
@@ -51,6 +52,6 @@ return {
    },
    inactive_pane_hsb = {
       saturation = 0.9,
-      brightness = 0.65,
+      brightness = 0.46,
    },
 }
